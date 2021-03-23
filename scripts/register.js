@@ -2,6 +2,11 @@ let exeurl = 'https://script.google.com/macros/s/AKfycbzjxE18xRZiZyzSmNwVAo8RVVN
 
 function preload(){
   GoogleJSON = loadJSON("https://spreadsheets.google.com/feeds/list/1LcYeY_pAKX4kyoUXDZjDA0-DFR5nDcpkuvbhy72JfnU/od6/public/values?alt=json");
+  LOAD = document.getElementById("loadding");
+  LOAD2 = document.getElementById("loadding2");
+  LOAD.style.display = "none";
+  LOAD2.style.display = "none";
+  FORM = document.getElementById("form1");
 }
 
 let nameCheck;
@@ -32,7 +37,8 @@ function run(){
     }
   }
   if(Check==0){
-    document.write("請稍等......</br>");
+    LOAD.style.display="";
+    FORM.style.display = "none";
     if(password>=6){
       $.post(exeurl,{
         "method":"write",
@@ -43,8 +49,8 @@ function run(){
         "password":PASSWORD
       },
       function (data) {
-        document.write(data+"<br>");
-        document.write("3秒後跳轉......");
+        alert(data);
+        LOAD2.style.display="";
         setTimeout("javascript:location.href='https://weichieh-wang.github.io/Yuntech-Together-Eating/index.html'", 3000);
       })
     }
