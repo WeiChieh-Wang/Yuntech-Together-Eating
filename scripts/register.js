@@ -45,7 +45,7 @@ function run(){
       function (data) {
         document.write(data+"<br>");
         document.write("3秒後跳轉......");
-        setTimeout("javascript:location.href='/index.html'", 3000);
+        setTimeout("javascript:location.href='https://weichieh-wang.github.io/Yuntech-Together-Eating/index.html'", 3000);
       })
     }
     else{
@@ -54,6 +54,6 @@ function run(){
   }
   else{
     alert("帳號重複");
-    window.location.href = "/webpages/register.html";
+    window.location.href = "https://weichieh-wang.github.io/Yuntech-Together-Eating/webpages/register.html";
   }
 }
