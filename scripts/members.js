@@ -23,7 +23,7 @@ function out(){
   localStorage.removeItem('username');
   localStorage.removeItem('name');
   o.style.display='show';
-  window.location.href='/index.html';
+  window.location.href='https://weichieh-wang.github.io/Yuntech-Together-Eating/index.html';
 }
  function setup(){
     data1.feed.entry.forEach((b)=>{
@@ -55,7 +55,7 @@ function out(){
         window.localStorage.setItem('username',valunm);
         console.log(window.localStorage.getItem('manager'));
         alert('登入成功');
-        window.location.href='/index.html';
+        window.location.href='https://weichieh-wang.github.io/Yuntech-Together-Eating/index.html';
       }
       else{
         alert('密碼錯誤');
