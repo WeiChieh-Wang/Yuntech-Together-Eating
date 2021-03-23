@@ -23,7 +23,7 @@ function out(){
   localStorage.removeItem('username');
   localStorage.removeItem('name');
   o.style.display='show';
-  window.location.href='index.html';
+  window.location.href='/index.html';
 }
  function setup(){
     data1.feed.entry.forEach((b)=>{
