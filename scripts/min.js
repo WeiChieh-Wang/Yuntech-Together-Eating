@@ -1,29 +1,57 @@
-function preload(){
-  img=loadImage("images/YYuntech_map_E.jpg");
-  user2=window.localStorage.getItem('username');
-  user1=window.localStorage.getItem('manager');
-  data3=loadJSON('https://spreadsheets.google.com/feeds/list/1_MXWO5Iz-fHN6Gp7uby4fpIbOgIK_bMpT9ZvfkktsHs/od6/public/values?alt=json');
-  data2=loadJSON('https://spreadsheets.google.com/feeds/list/1ahCsxN9NJ5kCurS6WRCXBNzhjq_29_1yMMTOr0BnZrQ/od6/public/values?alt=json');
-  GoogleJSON = loadJSON("https://spreadsheets.google.com/feeds/list/1LcYeY_pAKX4kyoUXDZjDA0-DFR5nDcpkuvbhy72JfnU/od6/public/values?alt=json");
-  if(user1==1){
-     document.getElementById("mm").style.display='';
-   }else{
-     document.getElementById("mm").style.display='none';
-  }
-  if(user2==null){
-         document.getElementById("login").style.display='';
-         document.getElementById("login1").style.display='';
-         document.getElementById("mm1").style.display='none';
-         document.getElementById("mm2").style.display='none';
-   }else{
-     document.getElementById("login").style.display='none'; 
-     document.getElementById("login1").style.display='none';
-     document.getElementById("mm1").style.display='';
-     document.getElementById("mm2").style.display='';
-  }    
+let btns = [];
+
+function preload() {
+img = loadImage('map.jpg');
+posision= loadJSON('https://spreadsheets.google.com/feeds/list/1V933tiOGerTNQf3ferf7afYf4hLDOcPZ_DKRUsMA8bE/od6/public/values?alt=json');
 }
-function setup() {  
+function setup() {
+createCanvas(800, 916);
+textSize(25);
+posision.feed.entry.forEach((o)=>{
+btns.push(new btn(o.gsx$name.$t,
+int(o.gsx$x.$t),
+int(o.gsx$y.$t),
+o.gsx$地點.$t,
+o.gsx$活動狀態.$t
+));
+});
+
 }
 
-function draw() {  
+function draw() {
+image(img, 0, 0,width,height);
+if(mouseIsPressed){
+console.log(mouseX,mouseY);
+}
+btns.forEach((v)=>{
+v.display();
+})
+}
+
+class btn{
+constructor(name,x,y,地點,活動狀態){
+this.name=name;
+this.x=x;
+this.y=y;
+this.size=35;
+this.地點 = 地點;
+this.活動狀態=活動狀態;
+}
+display(){
+strokeWeight(5);
+if (mouseX > this.x-this.size && mouseX < this.x+this.size &&
+mouseY > this.y-this.size && mouseY < this.y+this.size){
+noStroke();
+fill(0,0,255);
+text(this.name+'：'+this.地點, this.x-100,this.y+50);
+text("狀態:"+this.活動狀態, this.x-100,this.y+100)
+stroke(200,50,50);
+if(mouseIsPressed){
+//this.checkdate();
+}
+}else{
+stroke(0);
+}
+noFill();
+circle(this.x,this.y,this.size);
 }
